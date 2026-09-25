@@ -137,11 +137,6 @@ export interface DifficultyArgs extends CommonArgs {
 }
 
 /**
-* Either previously calculated attributes or a beatmap.
-*/
-export type MapOrAttributes = DifficultyAttributes | PerformanceAttributes | Beatmap;
-
-/**
 * Arguments to provide the `Performance` constructor.
 */
 export interface PerformanceArgs extends DifficultyArgs {
@@ -221,6 +216,11 @@ export interface PerformanceArgs extends DifficultyArgs {
     /** Four optional generators; one for each mode. */
     hitresultGenerators?: Array<(HitResultGenerator | null)> | null;
 }
+
+/**
+* Either previously calculated attributes or a beatmap.
+*/
+export type MapOrAttributes = DifficultyAttributes | PerformanceAttributes | Beatmap;
 
 /**
 * Common properties to extend other argument interfaces.
@@ -316,6 +316,11 @@ export interface CommonArgs {
 }
 
 /**
+* The content of a `.osu` file either as bytes or string.
+*/
+export type BeatmapContent = Uint8Array | string;
+
+/**
 * Arguments to provide the `BeatmapAttributesBuilder` constructor.
 */
 export interface BeatmapAttributesArgs extends CommonArgs {
@@ -326,11 +331,6 @@ export interface BeatmapAttributesArgs extends CommonArgs {
     /** Start off with a beatmap's attributes, mode, and convert status. */
     map?: Beatmap | null;
 }
-
-/**
-* The content of a `.osu` file either as bytes or string.
-*/
-export type BeatmapContent = Uint8Array | string;
 
 /**
  * All beatmap data that is relevant for difficulty and performance
@@ -360,8 +360,15 @@ export class Beatmap {
    * @throws Throws an error if conversion fails or mods are invalid
    */
   convert(mode: GameMode, mods?: Object | null): void;
-  readonly isConvert: boolean;
   readonly nSpinners: number;
+  readonly bpm: number;
+  readonly mode: GameMode;
+  readonly nHolds: number;
+  readonly nBreaks: number;
+  readonly nCircles: number;
+  readonly nObjects: number;
+  readonly nSliders: number;
+  readonly isConvert: boolean;
   readonly stackLeniency: number;
   readonly sliderTickRate: number;
   readonly sliderMultiplier: number;
@@ -369,14 +376,7 @@ export class Beatmap {
   readonly cs: number;
   readonly hp: number;
   readonly od: number;
-  readonly bpm: number;
-  readonly mode: GameMode;
-  readonly nHolds: number;
   readonly version: number;
-  readonly nBreaks: number;
-  readonly nCircles: number;
-  readonly nObjects: number;
-  readonly nSliders: number;
 }
 export class BeatmapAttributes {
   private constructor();
@@ -570,6 +570,18 @@ export class DifficultyAttributes {
    */
   readonly speed: number | undefined;
   /**
+   * The difficulty of the reading skill.
+   *
+   * Only available for osu!.
+   */
+  readonly reading: number | undefined;
+  /**
+   * The number of objects weighted by reading difficulty.
+   *
+   * Only available for osu!.
+   */
+  readonly readingDifficultNoteCount: number | undefined;
+  /**
    * The difficulty of the flashlight skill.
    *
    * Only available for osu!.
@@ -684,12 +696,6 @@ export class DifficultyAttributes {
    * Only available for osu!taiko.
    */
   readonly color: number | undefined;
-  /**
-   * The difficulty of the reading skill.
-   *
-   * Only available for osu!taiko.
-   */
-  readonly reading: number | undefined;
   /**
    * The amount of fruits.
    *
@@ -927,6 +933,12 @@ export class PerformanceAttributes {
    */
   readonly ppSpeed: number | undefined;
   /**
+   * The reading portion of the final pp.
+   *
+   * Only available for osu!.
+   */
+  readonly ppReading: number | undefined;
+  /**
    * The accuracy portion of the final pp.
    *
    * Only available for osu! and osu!taiko.
@@ -1006,7 +1018,9 @@ export class Strains {
    */
   readonly color: Float64Array | undefined;
   /**
-   * Strain peaks of the reading skill in osu!taiko.
+   * Strain peaks of the reading skill
+   * 
+   * Only available for osu! and osu!taiko
    */
   readonly reading: Float64Array | undefined;
   /**
