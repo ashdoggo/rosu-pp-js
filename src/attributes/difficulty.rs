@@ -225,7 +225,7 @@ impl From<OsuDifficultyAttributes> for JsDifficultyAttributes {
             aim_difficult_slider_count,
             speed,
             reading,
-            reading_difficult_slider_count,
+            reading_difficult_note_count,
             flashlight,
             slider_factor,
             aim_top_weighted_slider_factor,
