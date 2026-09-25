@@ -35,6 +35,16 @@ pub struct JsDifficultyAttributes {
     /// Only available for osu!.
     #[wasm_bindgen(readonly)]
     pub speed: Option<f64>,
+    /// The difficulty of the reading skill.
+    ///
+    /// Only available for osu!.
+    #[wasm_bindgen(readonly)]
+    pub reading: Option<f64>,
+    /// The number of objects weighted by reading difficulty.
+    ///
+    /// Only available for osu!.
+    #[wasm_bindgen(js_name = "readingDifficultNoteCount", readonly)]
+    pub reading_difficult_note_count: Option<f64>,
     /// The difficulty of the flashlight skill.
     ///
     /// Only available for osu!.
@@ -219,6 +229,8 @@ impl From<OsuDifficultyAttributes> for JsDifficultyAttributes {
             aim,
             aim_difficult_slider_count,
             speed,
+            reading,
+            reading_difficulty_slider_count,
             flashlight,
             slider_factor,
             aim_top_weighted_slider_factor,
@@ -250,6 +262,8 @@ impl From<OsuDifficultyAttributes> for JsDifficultyAttributes {
             aim: Some(aim),
             aim_difficult_slider_count: Some(aim_difficult_slider_count),
             speed: Some(speed),
+            reading: Some(reading),
+            reading_difficult_note_count: Some(reading_difficult_note_count),
             flashlight: Some(flashlight),
             slider_factor: Some(slider_factor),
             aim_top_weighted_slider_factor: Some(aim_top_weighted_slider_factor),
@@ -382,6 +396,8 @@ impl TryFrom<JsDifficultyAttributes> for DifficultyAttributes {
             aim,
             aim_difficult_slider_count,
             speed,
+            reading,
+            reading_difficult_note_count,
             flashlight,
             slider_factor,
             aim_top_weighted_slider_factor,
@@ -423,6 +439,8 @@ impl TryFrom<JsDifficultyAttributes> for DifficultyAttributes {
                     Some(aim),
                     Some(aim_difficult_slider_count),
                     Some(speed),
+                    Some(reading),
+                    Some(reading_difficult_note_count),
                     Some(flashlight),
                     Some(slider_factor),
                     Some(aim_top_weighted_slider_factor),
@@ -446,6 +464,8 @@ impl TryFrom<JsDifficultyAttributes> for DifficultyAttributes {
                     aim,
                     aim_difficult_slider_count,
                     speed,
+                    reading,
+                    reading_difficult_note_count,
                     flashlight,
                     slider_factor,
                     aim_top_weighted_slider_factor,
@@ -470,6 +490,8 @@ impl TryFrom<JsDifficultyAttributes> for DifficultyAttributes {
                         aim,
                         aim_difficult_slider_count,
                         speed,
+                        reading,
+                        reading_difficult_note_count,
                         flashlight,
                         slider_factor,
                         aim_top_weighted_slider_factor,
