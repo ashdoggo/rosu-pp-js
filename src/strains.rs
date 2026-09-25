@@ -60,6 +60,7 @@ impl From<Strains> for JsStrains {
                 aim_no_sliders,
                 speed,
                 flashlight,
+                ..
             }) => Self {
                 mode: JsGameMode::Osu,
                 section_len: OsuStrains::SECTION_LEN,

@@ -145,6 +145,7 @@ impl From<PerformanceAttributes> for JsPerformanceAttributes {
                 score_based_estimated_miss_count,
                 aim_estimated_slider_breaks,
                 speed_estimated_slider_breaks,
+                ..
             }) => Self {
                 difficulty: difficulty.into(),
                 pp,

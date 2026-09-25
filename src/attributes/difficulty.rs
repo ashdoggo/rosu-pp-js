@@ -240,6 +240,7 @@ impl From<OsuDifficultyAttributes> for JsDifficultyAttributes {
             n_spinners,
             stars,
             max_combo,
+            ..
         } = attrs;
 
         Self {
@@ -490,6 +491,8 @@ impl TryFrom<JsDifficultyAttributes> for DifficultyAttributes {
                         n_spinners,
                         stars,
                         max_combo,
+                        reading: 0.0,
+                        reading_difficult_note_count: 0,
                     }));
                 }
             }
