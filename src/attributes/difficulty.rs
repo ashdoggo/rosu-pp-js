@@ -142,11 +142,6 @@ pub struct JsDifficultyAttributes {
     /// Only available for osu!taiko.
     #[wasm_bindgen(readonly)]
     pub color: Option<f64>,
-    /// The difficulty of the reading skill.
-    ///
-    /// Only available for osu!taiko.
-    #[wasm_bindgen(readonly)]
-    pub reading: Option<f64>,
     /// The amount of fruits.
     ///
     /// Only available for osu!catch.
@@ -230,7 +225,7 @@ impl From<OsuDifficultyAttributes> for JsDifficultyAttributes {
             aim_difficult_slider_count,
             speed,
             reading,
-            reading_difficulty_slider_count,
+            reading_difficult_slider_count,
             flashlight,
             slider_factor,
             aim_top_weighted_slider_factor,
@@ -416,7 +411,6 @@ impl TryFrom<JsDifficultyAttributes> for DifficultyAttributes {
             stamina,
             rhythm,
             color,
-            reading,
             n_fruits,
             n_droplets,
             n_tiny_droplets,
@@ -513,8 +507,6 @@ impl TryFrom<JsDifficultyAttributes> for DifficultyAttributes {
                         n_spinners,
                         stars,
                         max_combo,
-                        reading: 0.0,
-                        reading_difficult_note_count: 0,
                     }));
                 }
             }
