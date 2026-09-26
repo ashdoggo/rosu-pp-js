@@ -1,11 +1,11 @@
 [package]
-name = "rosu-pp-js"
+name = "local-rosu-pp-js"
 version = "4.0.1"
 edition = "2024"
 authors = ["MaxOhn <ohn.m@hotmail.de>"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/MaxOhn/rosu-pp-js"
+repository = "https://github.com/ashdoggo/rosu-pp-js"
 description = "Difficulty and performance calculation for osu!"
 keywords = ["osu", "pp", "stars", "performance", "difficulty"]
 
